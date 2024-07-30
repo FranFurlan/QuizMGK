@@ -49,6 +49,15 @@ body{
     cursor: pointer;
 }
 
+.score{
+    padding: 0 10px;
+    font-size: 25px;
+    font-weight: 500;
+    color: #fff;
+    background: #007bff;
+    border-radius: 5px;
+}
+
 .info_box{
     width: 540px;
     background: #fff;

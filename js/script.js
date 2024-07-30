@@ -9,10 +9,12 @@ const option_list = document.querySelector(".option_list");
 const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
+const sound = new Audio("som.mp3");
 
 // quando o botão startQuiz é clicado
 start_btn.onclick = () => {
     info_box.classList.add("activeInfo"); // mostrar caixa de informações
+    sound.play();
 }
 
 // quando o botão exitQuiz é clicado
@@ -33,7 +35,8 @@ continue_btn.onclick = () => {
 let timeValue = 15;
 let que_count = 0;
 let que_numb = 1;
-let userScore = 0;
+let userScore = 0; // armazenar o placar
+let points = document.querySelector(".score"); // obter a div para exibir o placar
 let counter;
 let counterLine;
 let widthValue = 0;
@@ -49,6 +52,7 @@ restart_quiz.onclick = () => {
     que_count = 0;
     que_numb = 1;
     userScore = 0;
+    points.innerHTML = "Placar: " + userScore; // atualizando o placar na tela
     widthValue = 0;
     showQuetions(que_count); // chamando a função showQestions
     queCounter(que_numb); // passando que_numb para queCounter
@@ -120,9 +124,10 @@ function optionSelected(answer) {
     let userAns = answer.textContent; // obter opção selecionada pelo usuário
     let correcAns = questions[que_count].answer; // obter resposta correta do array
     const allOptions = option_list.children.length; // obter todos os itens de opção
-
+    
     if (userAns == correcAns) { // se a opção selecionada pelo usuário for igual à resposta correta do array
         userScore += 1; // aumentar o valor do score em 1
+        points.innerHTML = "Placar: " + userScore; // exibindo o placar
         answer.classList.add("correct"); // adicionar cor verde à opção selecionada corretamente
         answer.insertAdjacentHTML("beforeend", tickIconTag); // adicionar ícone de check à opção selecionada corretamente
         console.log("Resposta Correta");
